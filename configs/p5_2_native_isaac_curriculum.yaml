@@ -1,0 +1,38 @@
+schema: p5_2_native_isaac_curriculum_v1
+date: 2026-08-25
+gpu:
+  physical_index: 3
+  visible_gpu_count: 1
+  prelaunch_memory_limit_mb: 4096
+  runtime_memory_limit_mb: 12000
+  prelaunch_utilization_limit_percent: 20
+training:
+  seed: 11
+  num_envs: 32
+  action_semantics: [vx_world, vy_world, yaw_rate]
+  observation_dim: 53
+  state_dim: 58
+  action_dim: 3
+  command_speed_limit_mps: 4.0
+  rollout_steps: 64
+  hidden: 256
+  learning_rate: 0.0003
+  ppo_epochs: 5
+  minibatches: 8
+  entropy_coef: 0.01
+  episode_length_s: 20.0
+stages:
+  a:
+    description: fixed height, static target, unobstructed tracked-ring reset
+    iterations: 300
+    gate_success_6m: 0.70
+    gate_collision: 0.05
+    required_consecutive_evaluations: 2
+  b:
+    description: fixed height, static target, eight static obstacles
+    iterations: 300
+    gate_success_6m: 0.50
+    gate_collision: 0.05
+    required_consecutive_evaluations: 2
+stop_after_stage_b: true
+next_unimplemented_gate: finite FOV and occlusion with native Last/IMM tracker-scout integration

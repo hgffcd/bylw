@@ -1,0 +1,47 @@
+# T2 C1 upper-bound ablation: ConfidenceGAT with confidence from true IMM error.
+tag: thesis_t2_c1_oracle_confidence
+recipe: recipe_v4
+env:
+  n_pursuers: 3
+  speed_ratio: 0.6
+  n_static_obs: 8
+  n_dynamic_obs: 2
+  dyn_obs_speed: 2.0
+  obs_mode: belief
+  sense_range: 200.0
+  fov_half: 3.14159265
+  lost_cap_steps: 50
+  max_steps: 500
+  visual_occlusion: true
+  visibility_diagnostics: true
+  require_initial_visibility: true
+train:
+  seed: 101
+  iters: 1200
+  anneal:
+    start: 50
+    end: 800
+    fields:
+      sense_range: [200.0, 25.0]
+      fov_half: [3.14159265, 1.04719755]
+  belief_source: imm
+  belief_variant: oracle_confidence
+  oracle_confidence_scale_m: 5.0
+  filter_params:
+    imm: {q: 8.0, r: 0.01, p_stay: 0.95}
+  actor_encoder: confidence_gat
+  actor_encoder_kwargs: {out_dim: 64, n_layers: 2}
+  use_cbf: true
+  safety_version: dynamic_v2
+  safety_params:
+    horizon_s: 1.5
+    safety_buffer: 0.5
+    emergency_ranking: horizon
+eval_env:
+  sense_range: 25.0
+  fov_half: 1.04719755
+  lost_cap_steps: 50
+  max_steps: 500
+  visibility_diagnostics: true
+  k_col: 20.0
+  collision_terminates: true

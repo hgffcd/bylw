@@ -1,0 +1,15 @@
+# J5 clean C0 lineage: one fixed 1600-iteration recipe_v4 run per seed.
+tag: journal_j5_c0_clean
+recipe: recipe_v4
+env:
+  n_pursuers: 3
+  speed_ratio: 0.6
+  n_static_obs: 5
+  n_dynamic_obs: 0
+  obs_mode: oracle
+  sense_range: 200.0
+  fov_half: 3.14159
+  max_steps: 500
+train:
+  seed: 1
+  iters: 1600

@@ -1,0 +1,85 @@
+# Prepared after the P2 STOP decision.  This is an evaluation-only 2x2
+# execution-layer protocol: no checkpoint is trained, resumed, or modified.
+status: PREPARED_NOT_EXECUTED
+objective: >-
+  Preserve the sealed parent policy whenever the target is normally visible,
+  compose the validated tracker-scout/handoff controller only around loss and
+  reacquisition, and test a more conservative dynamic_v2 emergency shield as
+  an independent safety factor.
+
+checkpoint:
+  path: runs/thesis_t2_c1_mlp_reward_repair_full_imm_s101_0817_1847/final.pt
+  sha256: d83a42973135e2c4da68728ab0466c389f6a4c37a40ec5aaf824e8e445d3ab23
+evaluation:
+  config: configs/thesis_t2_c1_reward_radius_eval.yaml
+  config_sha256: 324258425cf09925678e20e78ac46ace0f8e552de36ba963f68ccd66ef879183
+  belief_source: imm
+  belief_variant: belief
+  eval_seed_base: 1180000
+  eval_seeds: 5
+  episodes_per_seed: 20
+  cpu_only: true
+  conditions:
+    # The frozen checkpoint records reward_target_radius=None, whereas this
+    # pre-registered evaluation fixes the 5 m reward ring.  Acknowledge that
+    # already-declared evaluation-only mismatch without changing any value.
+    main6: [--allow-env-mismatch]
+    strict5: [--capture-radius, '5.0', --allow-env-mismatch]
+    blackout2:
+      [--measurement-blackout-start-s, '2.0',
+       --measurement-blackout-duration-s, '2.0', --allow-env-mismatch]
+    blackout5:
+      [--measurement-blackout-start-s, '2.0',
+       --measurement-blackout-duration-s, '5.0', --allow-env-mismatch]
+
+controller:
+  enabled: true
+  start_lost_steps: 1
+  slot_radius_m: 8.0
+  scout_blend: 0.85
+  tracker_blend: 0.55
+  blend_growth: 0.10
+  post_reacquisition_hold_steps: 40
+  capture_slot_radius_m: 3.5
+  contraction_steps: 30
+  visible_tracker_blend: 0.70
+
+arms:
+  baseline:
+    controller: false
+    safety: {horizon_s: 1.5, safety_buffer: 0.5, emergency_ranking: horizon}
+  controller_only:
+    controller: true
+    safety: {horizon_s: 1.5, safety_buffer: 0.5, emergency_ranking: horizon}
+  safety_only:
+    controller: false
+    safety: {horizon_s: 1.5, safety_buffer: 1.0, emergency_ranking: safe_prefix}
+  full:
+    controller: true
+    safety: {horizon_s: 1.5, safety_buffer: 1.0, emergency_ranking: safe_prefix}
+
+gate:
+  full_collision_all_conditions: 0.0
+  full_main6_vs_baseline_min_delta: -0.03
+  full_strict5_vs_baseline_min_delta: -0.03
+  full_blackout2_vs_baseline_min_delta: 0.05
+  full_blackout5_vs_baseline_min_delta: 0.0
+  terminal_after_gate: true
+
+development_only_collision_replays:
+  seed_1000002:
+    horizon_buffer_0_5_collision: true
+    safe_prefix_buffer_0_5_collision: true
+    safe_prefix_buffer_1_0_collision: false
+    safe_prefix_buffer_1_0_next_step_clearance_m: 0.6469450797705472
+  seed_990005:
+    horizon_buffer_0_5_collision: true
+    safe_prefix_buffer_0_5_collision: false
+    safe_prefix_buffer_0_5_next_step_clearance_m: 0.2900661653914298
+  seed_1010004:
+    horizon_buffer_0_5_collision: true
+    safe_prefix_buffer_0_5_collision: false
+    safe_prefix_buffer_0_5_next_step_clearance_m: 0.19576901336866115
+  inference_boundary: >-
+    These three seen seeds motivate the candidate but are excluded from the
+    held-out base=1180000 gate.  They do not establish a collision guarantee.

@@ -1,0 +1,43 @@
+# ========== 训练配方 recipe_v4 (2026-07-27, 替代r2) ==========
+# 变更(相对r2): ① k_col 恒4、去除4->20退火——CBF在环下碰撞已被机制性防止, k_col只作用于
+#   松弛残余碰撞, 其-20/步罚金脉冲是实测的训练不稳定源(s3/s4均崩于k_col爬坡段,
+#   s1/s2的0.55-0.8震荡与其相关); 评估口径不受影响(eval看成功/碰撞率, 不看奖励)
+# ② eval_episodes 20->40: 压训练期检查点选择噪声(20回合评估的0.85/0.90被证实为赢家诅咒离群值)
+version: r4
+
+bc:
+  episodes: 300
+  epochs: 25
+  batch: 1024
+  lr: 1.0e-3
+  log_std_init: -1.2
+
+env:
+  k_dist: 2.0
+  k_col: 4.0
+  collision_terminates: false
+  capture_radius: 5.0
+  max_gap: 3.14159265
+  gamma_pbrs: 1.0
+
+train:
+  n_env: 8
+  rollout: 256
+  hidden: 128
+  lr: 3.0e-4
+  actor_lr: 5.0e-5
+  critic_lr: 1.0e-3
+  clip: 0.2
+  epochs: 4
+  minibatch: 4
+  ent_coef: 0.0005
+  gamma: 0.99
+  lam: 0.95
+  log_every: 5
+  eval_every: 50
+  eval_episodes: 40
+  use_cbf: true
+
+eval_env:
+  k_col: 20.0
+  collision_terminates: true

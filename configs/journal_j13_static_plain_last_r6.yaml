@@ -1,0 +1,48 @@
+# J13 fair plain-MAPPO Last baseline for the J12 static primary task.
+# This file intentionally matches journal_j12_static_handoff_last_r6.yaml
+# except for the tag and the absence of train.reacquisition_controller.
+tag: journal_j13_static_plain_last
+recipe: recipe_v4
+env:
+  n_pursuers: 3
+  speed_ratio: 0.6
+  n_static_obs: 8
+  n_dynamic_obs: 0
+  evader_type: reactive_mode_switch
+  evader_mode_dwell: [2.0, 4.0]
+  evader_turn_rate: 0.3
+  evader_pursuer_repulsion_gain: 1.0
+  evader_pursuer_reaction_range: 30.0
+  obs_mode: last
+  sense_range: 25.0
+  fov_half: 1.0472
+  max_steps: 500
+  capture_radius: 6.0
+  max_gap: 3.14159265
+  k_rec: 10.0
+  k_visible: 0.05
+  k_lost: 0.20
+  r_long_lost: -30.0
+  r_timeout: -10.0
+  require_initial_visibility: true
+train:
+  seed: 1
+  iters: 1200
+  safety_version: dynamic_v2
+  safety_params:
+    horizon_s: 1.5
+    safety_buffer: 0.5
+    emergency_ranking: horizon
+  cbf_correction_penalty: 0.05
+  episode_mix:
+    easy_probability: 0.25
+    easy_fields:
+      sense_range: 200.0
+      fov_half: 3.14159
+eval_env:
+  k_rec: 5.0
+  k_col: 20.0
+  collision_terminates: true
+  capture_radius: 6.0
+  max_gap: 3.14159265
+  require_initial_visibility: true

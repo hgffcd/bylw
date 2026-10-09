@@ -1,0 +1,21 @@
+# Fixed final-condition evaluation for the T2 C1 collaboration gate.
+env:
+  n_pursuers: 3
+  speed_ratio: 0.6
+  n_static_obs: 8
+  n_dynamic_obs: 2
+  dyn_obs_speed: 2.0
+  obs_mode: belief
+  sense_range: 25.0
+  fov_half: 1.04719755
+  lost_cap_steps: 50
+  max_steps: 500
+  visual_occlusion: true
+  visibility_diagnostics: true
+  require_initial_visibility: true
+  k_dist: 2.0
+  k_col: 20.0
+  capture_radius: 5.0
+  max_gap: 3.14159265
+  gamma_pbrs: 1.0
+  collision_terminates: true

@@ -1,0 +1,33 @@
+# Paper A H1：G1门后的IMM先验+GRU残差，场景/预算与E2 ModeSwitch完全一致。
+tag: c1_modeswitch_hybrid_r1
+recipe: recipe_v4
+env:
+  n_pursuers: 3
+  speed_ratio: 0.6
+  n_static_obs: 8
+  n_dynamic_obs: 0
+  obs_mode: belief
+  evader_type: mode_switch
+  evader_mode_dwell: [2.0, 4.0]
+  evader_turn_rate: 0.3
+  sense_range: 200.0
+  fov_half: 3.14159
+  max_steps: 500
+train:
+  seed: 1
+  iters: 1200
+  anneal:
+    start: 50
+    end: 800
+    fields:
+      sense_range: [200.0, 25.0]
+      fov_half: [3.14159, 1.0472]
+  belief_source: hybrid
+  hybrid_ckpt: runs/hybrid_residual_r1.pt
+  predictor_seq_len: 20
+  belief_variant: belief
+  filter_params:
+    imm:
+      q: 8.0
+      r: 0.01
+      p_stay: 0.95

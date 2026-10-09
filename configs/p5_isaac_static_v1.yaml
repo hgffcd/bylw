@@ -1,0 +1,45 @@
+phase: P5-0A_STATIC_ONLY
+runtime_enabled: false
+
+task:
+  timing:
+    physics_hz: 100
+    low_level_control_hz: 100
+    high_level_policy_hz: 10
+  n_pursuers: 3
+  arena_size_m: 100.0
+  fixed_altitude_m: 3.0
+  n_static_obstacles: 8
+  n_dynamic_obstacles: 0
+  sense_range_m: 25.0
+  fov_half_rad: 1.0471975511965976
+  visual_occlusion: true
+  capture_radius_main_m: 6.0
+  capture_radius_strict_m: 5.0
+  min_capture_agents: 3
+  max_capture_gap_rad: 3.141592653589793
+  contact_radius_m: 0.3
+  pursuer_radius_m: 0.5
+  v_max_mps: 8.0
+  a_max_mps2: 4.0
+  yaw_rate_max_rps: 1.5
+  k_nearest_obstacles: 4
+  lost_cap_steps: 100
+  obs_mode: last
+  team_target_sharing: false
+
+checkpoint_contract:
+  actor_input_dim: 39
+  actor_action_dim: 2
+  deterministic_action: tanh_mu
+  map_location: cpu
+
+runtime_gate:
+  environment_variable: BYLW_P5_ENABLE_ISAAC_RUNTIME
+  required_value: "1"
+  p5_0a_must_leave_unset: true
+
+gpu_policy:
+  default_gpu_count: 1
+  maximum_gpu_count: 2
+  forbidden_gpu_count: 4

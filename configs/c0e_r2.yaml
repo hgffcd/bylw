@@ -1,0 +1,16 @@
+# C0-easy 探索档: speed_ratio 0.6 (可行性扫描显示专家+CBF=70%, RL到0.8可达)
+# 用途: 为"C0档速度比再基线化"决策提供数据(0.8档专家天花板仅45%, 结构性偏难)
+tag: c0e_r2
+recipe: recipe_v2
+env:
+  n_pursuers: 3
+  speed_ratio: 0.6
+  n_static_obs: 5
+  n_dynamic_obs: 0
+  obs_mode: oracle
+  sense_range: 200.0
+  fov_half: 3.14159
+  max_steps: 500
+train:
+  seed: 1
+  iters: 800

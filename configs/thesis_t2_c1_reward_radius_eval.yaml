@@ -1,0 +1,30 @@
+# Fixed final-condition evaluation for the 5 m reward-ring / 6 m boundary run.
+# Training begins at 200 m / 180 degrees, but all checkpoint gates use the
+# final 25 m / 60 degree task encoded here.
+env:
+  n_pursuers: 3
+  speed_ratio: 0.6
+  n_static_obs: 8
+  n_dynamic_obs: 2
+  dyn_obs_speed: 2.0
+  obs_mode: belief
+  sense_range: 25.0
+  fov_half: 1.04719755
+  lost_cap_steps: 50
+  max_steps: 500
+  visual_occlusion: true
+  visibility_diagnostics: true
+  require_initial_visibility: true
+  capture_radius: 6.0
+  min_capture_agents: 3
+  max_gap: 3.14159265
+  k_dist: 2.0
+  gamma_pbrs: 1.0
+  k_col: 20.0
+  collision_terminates: true
+  reward_target_reference: truth
+  reward_target_radius: 5.0
+  k_rec: 0.5
+  k_lost: 0.1
+  r_long_lost: -100.0
+  r_timeout: -50.0

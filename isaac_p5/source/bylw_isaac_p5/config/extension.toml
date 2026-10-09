@@ -1,0 +1,19 @@
+[package]
+version = "0.1.0"
+category = "isaaclab"
+readme = "README.md"
+title = "BYLW P5 Pursuit"
+author = "hgffcd"
+maintainer = "hgffcd"
+description = "Fixed-height multi-UAV pursuit validation task for Isaac Lab 2.1"
+repository = "https://github.com/hgffcd/bylw"
+keywords = ["isaaclab", "multi-agent", "pursuit-evasion", "crazyflie"]
+
+[dependencies]
+"isaaclab" = {}
+"isaaclab_assets" = {}
+"isaaclab_rl" = {}
+"isaaclab_tasks" = {}
+
+[[python.module]]
+name = "bylw_isaac_p5"

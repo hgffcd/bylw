@@ -1,0 +1,36 @@
+# C0档课程v2 阶段2/4: rho_c=8, max_gap=4.5 (--resume 自阶段1 s1ft2 final.pt)
+# 沿用s1ft2验证配方: lr分离/epochs4/低熵; k_col 4->8 开始恢复碰撞罚金
+tag: c0_currv2_s2
+env:
+  n_pursuers: 3
+  speed_ratio: 0.8
+  n_static_obs: 5
+  n_dynamic_obs: 0
+  obs_mode: oracle
+  sense_range: 200.0
+  fov_half: 3.14159
+  max_steps: 500
+  k_dist: 2.0
+  k_col: 8.0
+  collision_terminates: false
+  capture_radius: 8.0
+  max_gap: 4.5
+  gamma_pbrs: 1.0
+train:
+  seed: 1
+  n_env: 8
+  rollout: 256
+  iters: 600
+  hidden: 128
+  lr: 3.0e-4
+  actor_lr: 5.0e-5
+  critic_lr: 1.0e-3
+  clip: 0.2
+  epochs: 4
+  minibatch: 4
+  ent_coef: 0.0005
+  gamma: 0.99
+  lam: 0.95
+  log_every: 5
+  eval_every: 50
+  eval_episodes: 20

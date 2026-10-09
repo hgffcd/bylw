@@ -1,0 +1,44 @@
+# C0档课程v3: 平滑退火 (断崖式s2失败教训: (12,6.29)->(8,4.5)跨度过大, 策略停在环带外拒绝适应)
+# 从s1ft2 final.pt(0.65@rho12)续训; it100-1100线性收紧 rho 12->5, gap 6.29->pi, k_col 4->20;
+# 末300迭代在最终判据下固化 —— it1100后即为M1真实验收条件(除collision_terminates)
+tag: c0_currv3_anneal
+env:
+  n_pursuers: 3
+  speed_ratio: 0.8
+  n_static_obs: 5
+  n_dynamic_obs: 0
+  obs_mode: oracle
+  sense_range: 200.0
+  fov_half: 3.14159
+  max_steps: 500
+  k_dist: 2.0
+  k_col: 4.0
+  collision_terminates: false
+  capture_radius: 12.0
+  max_gap: 6.29
+  gamma_pbrs: 1.0
+train:
+  seed: 1
+  n_env: 8
+  rollout: 256
+  iters: 1400
+  hidden: 128
+  lr: 3.0e-4
+  actor_lr: 5.0e-5
+  critic_lr: 1.0e-3
+  clip: 0.2
+  epochs: 4
+  minibatch: 4
+  ent_coef: 0.0005
+  gamma: 0.99
+  lam: 0.95
+  log_every: 5
+  eval_every: 50
+  eval_episodes: 20
+  anneal:
+    start: 100
+    end: 1100
+    fields:
+      capture_radius: [12.0, 5.0]
+      max_gap: [6.29, 3.14159265]
+      k_col: [4.0, 20.0]

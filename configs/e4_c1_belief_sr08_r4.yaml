@@ -1,0 +1,29 @@
+# Paper A E4 pressure points: APF, speed ratio 0.8, IMM or GRU belief.
+tag: e4_c1_sr08_belief_tuned
+recipe: recipe_v4
+env:
+  n_pursuers: 3
+  speed_ratio: 0.8
+  n_static_obs: 8
+  n_dynamic_obs: 0
+  obs_mode: belief
+  sense_range: 200.0
+  fov_half: 3.14159
+  max_steps: 500
+train:
+  seed: 1
+  iters: 1200
+  anneal:
+    start: 50
+    end: 800
+    fields:
+      sense_range: [200.0, 25.0]
+      fov_half: [3.14159, 1.0472]
+  predictor_ckpt: runs/predictor_r2.pt
+  predictor_seq_len: 20
+  belief_variant: belief
+  filter_params:
+    imm:
+      q: 8.0
+      r: 0.01
+      p_stay: 0.95

@@ -1,0 +1,15 @@
+# C0档 recipe_v2 正式训练 (BC checkpoint 复用 r1 的 bc_r1_c0_s<s>.pt, BC数据与配方无关)
+tag: c0_r2
+recipe: recipe_v2
+env:
+  n_pursuers: 3
+  speed_ratio: 0.8
+  n_static_obs: 5
+  n_dynamic_obs: 0
+  obs_mode: oracle
+  sense_range: 200.0
+  fov_half: 3.14159
+  max_steps: 500
+train:
+  seed: 1
+  iters: 800

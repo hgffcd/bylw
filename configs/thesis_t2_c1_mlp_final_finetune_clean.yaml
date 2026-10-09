@@ -1,0 +1,59 @@
+# Paired clean-control fine-tune from the selected full-budget checkpoint.
+# The training environment stays at the final 25 m / 60 degree condition;
+# there is no sensing curriculum and no measurement-blackout augmentation.
+tag: thesis_t2_c1_mlp_final_finetune_clean
+recipe: recipe_v4
+env:
+  n_pursuers: 3
+  speed_ratio: 0.6
+  n_static_obs: 8
+  n_dynamic_obs: 2
+  dyn_obs_speed: 2.0
+  obs_mode: belief
+  sense_range: 25.0
+  fov_half: 1.04719755
+  lost_cap_steps: 50
+  max_steps: 500
+  visual_occlusion: true
+  visibility_diagnostics: true
+  require_initial_visibility: true
+  capture_radius: 6.0
+  min_capture_agents: 3
+  max_gap: 3.14159265
+  reward_target_reference: truth
+  k_rec: 0.5
+  k_lost: 0.1
+  r_long_lost: -100.0
+  r_timeout: -50.0
+train:
+  seed: 101
+  iters: 150
+  belief_source: imm
+  belief_variant: belief
+  filter_params:
+    imm: {q: 8.0, r: 0.01, p_stay: 0.95}
+  actor_encoder: mlp
+  use_cbf: true
+  safety_version: dynamic_v2
+  safety_params:
+    horizon_s: 1.5
+    safety_buffer: 0.5
+    emergency_ranking: horizon
+  eval_resume_at_start: true
+  retain_earliest_eval_tie: true
+eval_env:
+  sense_range: 25.0
+  fov_half: 1.04719755
+  lost_cap_steps: 50
+  max_steps: 500
+  visibility_diagnostics: true
+  k_col: 20.0
+  collision_terminates: true
+  capture_radius: 6.0
+  min_capture_agents: 3
+  max_gap: 3.14159265
+  reward_target_reference: truth
+  k_rec: 0.5
+  k_lost: 0.1
+  r_long_lost: -100.0
+  r_timeout: -50.0

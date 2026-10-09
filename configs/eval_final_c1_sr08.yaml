@@ -1,0 +1,20 @@
+# Paper A E4 final pressure evaluation: APF C1 at speed ratio 0.8.
+tag: eval_final_c1_sr08
+env:
+  n_pursuers: 3
+  speed_ratio: 0.8
+  n_static_obs: 8
+  n_dynamic_obs: 0
+  obs_mode: zero
+  evader_type: apf
+  sense_range: 25.0
+  fov_half: 1.0472
+  max_steps: 500
+  k_dist: 2.0
+  k_col: 20.0
+  collision_terminates: true
+  capture_radius: 5.0
+  max_gap: 3.14159265
+  gamma_pbrs: 1.0
+train:
+  hidden: 128

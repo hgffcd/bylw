@@ -1,0 +1,78 @@
+# P4 sensing-range robustness development gate.
+# Resume a frozen J12 Last+handoff policy and change only the distribution of
+# sensing range across training episodes.  The formal 25 m task remains the
+# checkpoint-selection condition; FOV, occlusion, obstacles, target and capture
+# geometry never change.  This is not a replacement for the frozen J13 result.
+tag: thesis_p4_range_randomized_last_gate
+recipe: recipe_v4
+env:
+  n_pursuers: 3
+  speed_ratio: 0.6
+  n_static_obs: 8
+  n_dynamic_obs: 0
+  evader_type: reactive_mode_switch
+  evader_mode_dwell: [2.0, 4.0]
+  evader_turn_rate: 0.3
+  evader_pursuer_repulsion_gain: 1.0
+  evader_pursuer_reaction_range: 30.0
+  obs_mode: last
+  sense_range: 25.0
+  fov_half: 1.0472
+  max_steps: 500
+  lost_cap_steps: 100
+  capture_radius: 6.0
+  min_capture_agents: 3
+  max_gap: 3.14159265
+  k_rec: 10.0
+  k_visible: 0.05
+  k_lost: 0.20
+  r_long_lost: -30.0
+  r_timeout: -10.0
+  require_initial_visibility: true
+  visual_occlusion: true
+train:
+  seed: 1
+  iters: 150
+  policy_anchor_coef: 0.10
+  eval_resume_at_start: true
+  retain_earliest_eval_tie: true
+  safety_version: dynamic_v2
+  safety_params:
+    horizon_s: 1.5
+    safety_buffer: 0.5
+    emergency_ranking: horizon
+  cbf_correction_penalty: 0.05
+  reacquisition_controller:
+    enabled: true
+    start_lost_steps: 1
+    slot_radius_m: 8.0
+    scout_blend: 0.85
+    tracker_blend: 0.55
+    blend_growth: 0.10
+    scout_speed_ratio: 1.0
+    tracker_speed_ratio: 0.65
+    heading_tau_s: 0.55
+    speed_tau_s: 1.0
+    slot_arrival_m: 1.5
+    post_reacquisition_hold_steps: 40
+    capture_slot_radius_m: 3.5
+    contraction_steps: 30
+    visible_tracker_blend: 0.70
+  # The field of view remains 120 degrees in every arm.  Only sensing range is
+  # randomized, with the hardest 25/30 m cases receiving 65% of episodes.
+  episode_mix:
+    variants:
+      - {probability: 0.15, fields: {sense_range: 200.0}}
+      - {probability: 0.20, fields: {sense_range: 50.0}}
+      - {probability: 0.25, fields: {sense_range: 30.0}}
+      - {probability: 0.40, fields: {sense_range: 25.0}}
+eval_env:
+  sense_range: 25.0
+  fov_half: 1.0472
+  k_rec: 5.0
+  k_col: 20.0
+  collision_terminates: true
+  capture_radius: 6.0
+  min_capture_agents: 3
+  max_gap: 3.14159265
+  require_initial_visibility: true

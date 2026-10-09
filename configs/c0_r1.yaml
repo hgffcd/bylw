@@ -1,0 +1,18 @@
+# C0档 recipe_v1 正式训练: BC(最终判据示教)热启动 + PPO微调 + k_col退火
+# 用法: python scripts/bc_warmstart.py --config configs/c0_r1.yaml --seed <s> --out runs/bc_r1_c0_s<s>.pt
+#       python train_baseline.py --config configs/c0_r1.yaml --resume runs/bc_r1_c0_s<s>.pt
+#       (train.seed 由命令行前手动改, 或复制config; 种子纪律: 主曲线>=3种子)
+tag: c0_r1
+recipe: recipe_v1
+env:
+  n_pursuers: 3
+  speed_ratio: 0.8
+  n_static_obs: 5
+  n_dynamic_obs: 0
+  obs_mode: oracle
+  sense_range: 200.0
+  fov_half: 3.14159
+  max_steps: 500
+train:
+  seed: 1
+  iters: 800

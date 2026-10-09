@@ -1,0 +1,22 @@
+# J5 clean-lineage dynamic Last method; identical to J2a except artifact tag.
+tag: journal_j5_last_dynamic
+recipe: recipe_v4
+env:
+  n_pursuers: 3
+  speed_ratio: 0.6
+  n_static_obs: 8
+  n_dynamic_obs: 2
+  dyn_obs_speed: 2.0
+  obs_mode: last
+  sense_range: 200.0
+  fov_half: 3.14159
+  max_steps: 500
+train:
+  seed: 1
+  iters: 1200
+  anneal:
+    start: 50
+    end: 800
+    fields:
+      sense_range: [200.0, 25.0]
+      fov_half: [3.14159, 1.0472]

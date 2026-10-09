@@ -1,0 +1,27 @@
+# C1档 point基线(预测器点预测, 无置信度) recipe_v4: 与 c1_zero_anneal_r2.yaml 仅
+# obs_mode/预测器三键不同 —— C1 感知退火 + sr0.6, 预测器在环由 train_belief.py 驱动
+# 接力用法: python train_belief.py --config 本文件 --resume <C0种子best_eval.pt> --seed <s>
+# 注意: predictor_r2.pt 为 M3 刷新链产物; 未生成前可 --predictor-ckpt runs/predictor.pt 临时替代
+tag: c1_point
+recipe: recipe_v4
+env:
+  n_pursuers: 3
+  speed_ratio: 0.6
+  n_static_obs: 8
+  n_dynamic_obs: 0
+  obs_mode: belief
+  sense_range: 200.0
+  fov_half: 3.14159
+  max_steps: 500
+train:
+  seed: 1
+  iters: 1200
+  anneal:
+    start: 50
+    end: 800
+    fields:
+      sense_range: [200.0, 25.0]
+      fov_half: [3.14159, 1.0472]
+  predictor_ckpt: runs/predictor_r2.pt
+  predictor_seq_len: 20
+  belief_variant: point

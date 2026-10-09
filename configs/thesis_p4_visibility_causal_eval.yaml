@@ -1,0 +1,31 @@
+tag: thesis_p4_visibility_causal_eval
+env:
+  n_pursuers: 3
+  speed_ratio: 0.6
+  n_static_obs: 8
+  n_dynamic_obs: 0
+  evader_type: reactive_mode_switch
+  evader_mode_dwell: [2.0, 4.0]
+  evader_turn_rate: 0.3
+  evader_pursuer_repulsion_gain: 1.0
+  evader_pursuer_reaction_range: 30.0
+  obs_mode: last
+  sense_range: 25.0
+  fov_half: 1.0472
+  visual_occlusion: true
+  visibility_diagnostics: true
+  max_steps: 500
+  k_dist: 2.0
+  k_col: 20.0
+  collision_terminates: true
+  capture_radius: 6.0
+  min_capture_agents: 3
+  max_gap: 3.14159265
+  gamma_pbrs: 1.0
+  k_visible: 0.05
+  k_lost: 0.20
+  r_long_lost: -30.0
+  r_timeout: -10.0
+  require_initial_visibility: true
+train:
+  hidden: 128

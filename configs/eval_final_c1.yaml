@@ -1,0 +1,20 @@
+# C1档最终验收评估配置 v2 (2026-07-27 选项A: 速度比0.9->0.6, 隔离失观处理变量;
+# 感知参数保持设计终点: sense 25m, FOV半角60度; 依据见EXPERIMENT_LOG选项A决策行, 此后勿改)
+tag: eval_final_c1
+env:
+  n_pursuers: 3
+  speed_ratio: 0.6
+  n_static_obs: 8
+  n_dynamic_obs: 0
+  obs_mode: zero
+  sense_range: 25.0
+  fov_half: 1.0472
+  max_steps: 500
+  k_dist: 2.0
+  k_col: 20.0
+  collision_terminates: true
+  capture_radius: 5.0
+  max_gap: 3.14159265
+  gamma_pbrs: 1.0
+train:
+  hidden: 128

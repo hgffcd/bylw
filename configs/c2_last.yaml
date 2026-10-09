@@ -1,0 +1,28 @@
+# C2档: 等速目标+密集静态障碍+动态障碍, 失观处理=最后观测点基线 —— 里程碑M2
+tag: c2_last
+env:
+  n_pursuers: 3
+  speed_ratio: 1.0
+  n_static_obs: 10
+  n_dynamic_obs: 2
+  obs_mode: last
+  sense_range: 25.0
+  fov_half: 1.0472          # 60度
+  lost_cap_steps: 100
+  max_steps: 500
+train:
+  seed: 1
+  n_env: 8
+  rollout: 256
+  iters: 1200
+  hidden: 128
+  lr: 3.0e-4
+  clip: 0.2
+  epochs: 10
+  minibatch: 4
+  ent_coef: 0.01
+  gamma: 0.99
+  lam: 0.95
+  log_every: 5
+  eval_every: 50
+  eval_episodes: 20

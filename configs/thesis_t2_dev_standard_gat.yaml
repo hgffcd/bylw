@@ -1,0 +1,52 @@
+# Fair T2 implementation control: identical to ConfidenceGAT smoke except no log(conf) bias.
+tag: thesis_t2_dev_standard_gat
+recipe: recipe_v4
+env:
+  n_pursuers: 3
+  speed_ratio: 0.6
+  n_static_obs: 8
+  n_dynamic_obs: 2
+  dyn_obs_speed: 2.0
+  obs_mode: belief
+  sense_range: 25.0
+  fov_half: 1.04719755
+  lost_cap_steps: 50
+  max_steps: 120
+  visual_occlusion: true
+  visibility_diagnostics: true
+train:
+  seed: 101
+  iters: 2
+  n_env: 2
+  rollout: 16
+  hidden: 64
+  actor_lr: 5.0e-5
+  critic_lr: 1.0e-3
+  epochs: 1
+  minibatch: 1
+  log_every: 1
+  eval_every: 1
+  eval_episodes: 2
+  belief_source: imm
+  belief_variant: belief
+  filter_params:
+    imm:
+      q: 8.0
+      r: 0.01
+      p_stay: 0.95
+  actor_encoder: gat
+  actor_encoder_kwargs:
+    out_dim: 64
+    n_layers: 2
+  use_cbf: true
+  safety_version: dynamic_v2
+  safety_params:
+    horizon_s: 1.5
+    safety_buffer: 0.5
+    emergency_ranking: horizon
+eval_env:
+  max_steps: 120
+  lost_cap_steps: 50
+  visibility_diagnostics: true
+  k_col: 20.0
+  collision_terminates: true

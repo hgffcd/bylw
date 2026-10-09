@@ -1,0 +1,27 @@
+# C0档调参变体A: 仅降熵系数(0.01->0.003) —— M1不收敛诊断: 熵项压过策略梯度
+tag: c0_oracle_v2a
+env:
+  n_pursuers: 3
+  speed_ratio: 0.8
+  n_static_obs: 5
+  n_dynamic_obs: 0
+  obs_mode: oracle
+  sense_range: 200.0        # C0: 近似全向全域感知
+  fov_half: 3.14159
+  max_steps: 500
+train:
+  seed: 1
+  n_env: 8
+  rollout: 256
+  iters: 600
+  hidden: 128
+  lr: 3.0e-4
+  clip: 0.2
+  epochs: 10
+  minibatch: 4
+  ent_coef: 0.003
+  gamma: 0.99
+  lam: 0.95
+  log_every: 5
+  eval_every: 50
+  eval_episodes: 20

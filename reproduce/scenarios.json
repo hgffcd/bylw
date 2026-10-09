@@ -1,0 +1,357 @@
+{
+  "description": "Configuration only, extracted from C212 plan_v1: 24 recent and 48 prior development episodes. No results, GPU assignments or historical artifact hashes.",
+  "cases": {
+    "recent_4to3_g0": {
+      "label": "4to3_g0",
+      "stratum": "4to3",
+      "agents": 4,
+      "seed": 20150000,
+      "n": 4,
+      "indices": [
+        2
+      ],
+      "times": [
+        2.5
+      ],
+      "duration": 62.5,
+      "cohort": "c201_development",
+      "windows": [
+        30,
+        45,
+        60
+      ]
+    },
+    "recent_4to3_g1": {
+      "label": "4to3_g1",
+      "stratum": "4to3",
+      "agents": 4,
+      "seed": 20150016,
+      "n": 4,
+      "indices": [
+        0
+      ],
+      "times": [
+        2.5
+      ],
+      "duration": 62.5,
+      "cohort": "c201_development",
+      "windows": [
+        30,
+        45,
+        60
+      ]
+    },
+    "recent_5to4_g0": {
+      "label": "5to4_g0",
+      "stratum": "5to4",
+      "agents": 5,
+      "seed": 20151000,
+      "n": 4,
+      "indices": [
+        3
+      ],
+      "times": [
+        2.5
+      ],
+      "duration": 62.5,
+      "cohort": "c201_development",
+      "windows": [
+        30,
+        45,
+        60
+      ]
+    },
+    "recent_5to4_g1": {
+      "label": "5to4_g1",
+      "stratum": "5to4",
+      "agents": 5,
+      "seed": 20151016,
+      "n": 4,
+      "indices": [
+        1
+      ],
+      "times": [
+        2.5
+      ],
+      "duration": 62.5,
+      "cohort": "c201_development",
+      "windows": [
+        30,
+        45,
+        60
+      ]
+    },
+    "recent_5to3_g0": {
+      "label": "5to3_g0",
+      "stratum": "5to3",
+      "agents": 5,
+      "seed": 20152000,
+      "n": 4,
+      "indices": [
+        0,
+        4
+      ],
+      "times": [
+        2.5,
+        3.0
+      ],
+      "duration": 63.0,
+      "cohort": "c201_development",
+      "windows": [
+        30,
+        45,
+        60
+      ]
+    },
+    "recent_5to3_g1": {
+      "label": "5to3_g1",
+      "stratum": "5to3",
+      "agents": 5,
+      "seed": 20152016,
+      "n": 4,
+      "indices": [
+        1,
+        3
+      ],
+      "times": [
+        2.5,
+        3.0
+      ],
+      "duration": 63.0,
+      "cohort": "c201_development",
+      "windows": [
+        30,
+        45,
+        60
+      ]
+    },
+    "old48_fresh_4to3_g0": {
+      "label": "fresh_4to3_g0",
+      "stratum": "4to3",
+      "agents": 4,
+      "seed": 19330000,
+      "n": 4,
+      "indices": [
+        1
+      ],
+      "times": [
+        2.5
+      ],
+      "duration": 32.5,
+      "cohort": "fresh",
+      "windows": [
+        30
+      ]
+    },
+    "old48_fresh_4to3_g1": {
+      "label": "fresh_4to3_g1",
+      "stratum": "4to3",
+      "agents": 4,
+      "seed": 19330016,
+      "n": 4,
+      "indices": [
+        2
+      ],
+      "times": [
+        2.5
+      ],
+      "duration": 32.5,
+      "cohort": "fresh",
+      "windows": [
+        30
+      ]
+    },
+    "old48_fresh_5to4_g0": {
+      "label": "fresh_5to4_g0",
+      "stratum": "5to4",
+      "agents": 5,
+      "seed": 19331000,
+      "n": 4,
+      "indices": [
+        0
+      ],
+      "times": [
+        2.5
+      ],
+      "duration": 62.5,
+      "cohort": "fresh",
+      "windows": [
+        30,
+        45,
+        60
+      ]
+    },
+    "old48_fresh_5to4_g1": {
+      "label": "fresh_5to4_g1",
+      "stratum": "5to4",
+      "agents": 5,
+      "seed": 19331016,
+      "n": 4,
+      "indices": [
+        2
+      ],
+      "times": [
+        2.5
+      ],
+      "duration": 62.5,
+      "cohort": "fresh",
+      "windows": [
+        30,
+        45,
+        60
+      ]
+    },
+    "old48_fresh_5to3_g0": {
+      "label": "fresh_5to3_g0",
+      "stratum": "5to3",
+      "agents": 5,
+      "seed": 19332000,
+      "n": 4,
+      "indices": [
+        0,
+        3
+      ],
+      "times": [
+        2.5,
+        3.0
+      ],
+      "duration": 33.0,
+      "cohort": "fresh",
+      "windows": [
+        30
+      ]
+    },
+    "old48_fresh_5to3_g1": {
+      "label": "fresh_5to3_g1",
+      "stratum": "5to3",
+      "agents": 5,
+      "seed": 19332016,
+      "n": 4,
+      "indices": [
+        2,
+        4
+      ],
+      "times": [
+        2.5,
+        3.0
+      ],
+      "duration": 33.0,
+      "cohort": "fresh",
+      "windows": [
+        30
+      ]
+    },
+    "old48_development_4to3_g0": {
+      "label": "development_4to3_g0",
+      "stratum": "4to3",
+      "agents": 4,
+      "seed": 19120000,
+      "n": 4,
+      "indices": [
+        0
+      ],
+      "times": [
+        2.5
+      ],
+      "duration": 32.5,
+      "cohort": "development",
+      "windows": [
+        30
+      ]
+    },
+    "old48_development_5to3_g1": {
+      "label": "development_5to3_g1",
+      "stratum": "5to3",
+      "agents": 5,
+      "seed": 19122016,
+      "n": 4,
+      "indices": [
+        1,
+        4
+      ],
+      "times": [
+        2.5,
+        3.0
+      ],
+      "duration": 33.0,
+      "cohort": "development",
+      "windows": [
+        30
+      ]
+    },
+    "old48_development_5to4_g0": {
+      "label": "development_5to4_g0",
+      "stratum": "5to4",
+      "agents": 5,
+      "seed": 19121000,
+      "n": 4,
+      "indices": [
+        1
+      ],
+      "times": [
+        2.5
+      ],
+      "duration": 32.5,
+      "cohort": "development",
+      "windows": [
+        30
+      ]
+    },
+    "old48_development_4to3_g1": {
+      "label": "development_4to3_g1",
+      "stratum": "4to3",
+      "agents": 4,
+      "seed": 19120016,
+      "n": 4,
+      "indices": [
+        3
+      ],
+      "times": [
+        2.5
+      ],
+      "duration": 32.5,
+      "cohort": "development",
+      "windows": [
+        30
+      ]
+    },
+    "old48_development_5to3_g0": {
+      "label": "development_5to3_g0",
+      "stratum": "5to3",
+      "agents": 5,
+      "seed": 19122000,
+      "n": 4,
+      "indices": [
+        0,
+        2
+      ],
+      "times": [
+        2.5,
+        3.0
+      ],
+      "duration": 33.0,
+      "cohort": "development",
+      "windows": [
+        30
+      ]
+    },
+    "old48_development_5to4_g1": {
+      "label": "development_5to4_g1",
+      "stratum": "5to4",
+      "agents": 5,
+      "seed": 19121016,
+      "n": 4,
+      "indices": [
+        4
+      ],
+      "times": [
+        2.5
+      ],
+      "duration": 32.5,
+      "cohort": "development",
+      "windows": [
+        30
+      ]
+    }
+  }
+}

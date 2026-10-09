@@ -1,0 +1,33 @@
+# C0档课程v2 阶段1/4: 修复PBRS漏损(gamma_pbrs 0.99->1.0, 实测远离刷分漏洞见EXPERIMENT_LOG)
+# + 双轴判据课程: rho_c=12, max_gap=6.29(暂关角度判据) 保证捕获信号出现
+tag: c0_currv2_s1
+env:
+  n_pursuers: 3
+  speed_ratio: 0.8
+  n_static_obs: 5
+  n_dynamic_obs: 0
+  obs_mode: oracle
+  sense_range: 200.0
+  fov_half: 3.14159
+  max_steps: 500
+  k_dist: 2.0
+  collision_terminates: false
+  capture_radius: 12.0
+  max_gap: 6.29
+  gamma_pbrs: 1.0
+train:
+  seed: 1
+  n_env: 8
+  rollout: 256
+  iters: 300
+  hidden: 128
+  lr: 3.0e-4
+  clip: 0.2
+  epochs: 10
+  minibatch: 4
+  ent_coef: 0.001
+  gamma: 0.99
+  lam: 0.95
+  log_every: 5
+  eval_every: 50
+  eval_episodes: 20

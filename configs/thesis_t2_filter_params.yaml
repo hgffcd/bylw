@@ -1,0 +1,15 @@
+# Frozen before the T2 classical-filter rollout evaluation.
+# Values reuse the independent Paper-A E5 tuning outcome; they are not fitted
+# on the graduation-thesis APF-ID report split or ModeSwitch-OOD data.
+provenance: paper_a_e5_independent_tuning_reuse
+filters:
+  cv:
+    q_growth: 16.0
+    alpha: 0.8
+  kf:
+    q: 8.0
+    r: 0.01
+  imm:
+    q: 8.0
+    r: 0.01
+    p_stay: 0.95

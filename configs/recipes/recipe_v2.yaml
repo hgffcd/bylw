@@ -1,0 +1,43 @@
+# ========== 训练配方 recipe_v2 (2026-07-26, 替代r1) ==========
+# 变更(相对r1): + CBF安全层(M5提前接入)训练/评估全程启用; k_col固定20(碰撞由CBF机制性防止,
+#   不再需要罚金软化退火); 其余同r1
+# 依据: r1三种子在严格口径(碰撞终止)下评估碰撞率75-100%——BC无法克隆专家的非连续DWA避障,
+#   奖励侧硬拗避撞已4轮失败; 论文架构本就是"任务归策略+安全归CBF层"(开题5.3.4)
+version: r2
+
+bc:
+  episodes: 300
+  epochs: 25
+  batch: 1024
+  lr: 1.0e-3
+  log_std_init: -1.2
+
+env:
+  k_dist: 2.0
+  k_col: 20.0
+  collision_terminates: false   # 训练期不终止(CBF下碰撞已稀少); 评估期终止见eval_env
+  capture_radius: 5.0
+  max_gap: 3.14159265
+  gamma_pbrs: 1.0
+
+train:
+  n_env: 8
+  rollout: 256
+  hidden: 128
+  lr: 3.0e-4
+  actor_lr: 5.0e-5
+  critic_lr: 1.0e-3
+  clip: 0.2
+  epochs: 4
+  minibatch: 4
+  ent_coef: 0.0005
+  gamma: 0.99
+  lam: 0.95
+  log_every: 5
+  eval_every: 50
+  eval_episodes: 20
+  use_cbf: true             # M5安全层: 训练rollout与评估全程经CBF投影
+
+eval_env:
+  k_col: 20.0
+  collision_terminates: true

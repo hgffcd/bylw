@@ -1,0 +1,35 @@
+# ========== 训练配方 recipe_v3 (2026-07-26, r2的续训档) ==========
+# 变更(相对r2): actor_lr 5e-5 -> 1.5e-4, ent_coef 5e-4 -> 1e-3
+# 用途: 从r2各种子final.pt继续训练. BC保护期已过(critic已收敛/策略已脱离BC起点),
+#   保守lr在800迭代内爬不完最终判据的坡; log_std钳制(≤0.2)兜底防熵失控
+version: r3
+
+env:
+  k_dist: 2.0
+  k_col: 20.0
+  collision_terminates: false
+  capture_radius: 5.0
+  max_gap: 3.14159265
+  gamma_pbrs: 1.0
+
+train:
+  n_env: 8
+  rollout: 256
+  hidden: 128
+  lr: 3.0e-4
+  actor_lr: 1.5e-4
+  critic_lr: 1.0e-3
+  clip: 0.2
+  epochs: 4
+  minibatch: 4
+  ent_coef: 0.001
+  gamma: 0.99
+  lam: 0.95
+  log_every: 5
+  eval_every: 50
+  eval_episodes: 20
+  use_cbf: true
+
+eval_env:
+  k_col: 20.0
+  collision_terminates: true

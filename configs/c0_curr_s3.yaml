@@ -1,0 +1,30 @@
+# C0档捕获半径课程 阶段3/3: rho_c=5 目标值 (用 --resume 从阶段2 best.pt 续训) —— M1验收档
+tag: c0_curr_s3
+env:
+  n_pursuers: 3
+  speed_ratio: 0.8
+  n_static_obs: 5
+  n_dynamic_obs: 0
+  obs_mode: oracle
+  sense_range: 200.0
+  fov_half: 3.14159
+  max_steps: 500
+  k_dist: 2.0
+  collision_terminates: false
+  capture_radius: 5.0
+train:
+  seed: 1
+  n_env: 8
+  rollout: 256
+  iters: 400
+  hidden: 128
+  lr: 3.0e-4
+  clip: 0.2
+  epochs: 10
+  minibatch: 4
+  ent_coef: 0.001
+  gamma: 0.99
+  lam: 0.95
+  log_every: 5
+  eval_every: 50
+  eval_episodes: 20

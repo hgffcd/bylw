@@ -1,0 +1,51 @@
+# ========== 训练配方 recipe_v1 (2026-07-26 冻结) ==========
+# 硬约束: C0/C1/C2/point基线/全部消融一律用本配方; 修改需升版本号(r2,...)
+# 内容: BC热启动(分槽合围专家v4) + PPO保守微调(lr分离) + k_col退火
+# 依据: EXPERIMENT_LOG 2026-07-26 四轮失败诊断(PBRS漏损/无引导不收敛/激进微调摧毁BC/碰撞罚金压制)
+version: r1
+
+# --- BC热启动参数(scripts/bc_warmstart.py, 专家=diag_scripted_pursuit.scripted_action v4:
+#     回合级固定槽位分配(gap恒2pi/n) + 候选航向采样避障 + 净空控速; 特权信息仅供教师) ---
+bc:
+  episodes: 300
+  epochs: 25
+  batch: 1024
+  lr: 1.0e-3
+  log_std_init: -1.2      # sigma=0.30, 抑制微调初期rollout噪声
+
+# --- 训练env默认(奖励/判据部分; 场景轴参数由各config自带) ---
+env:
+  k_dist: 2.0
+  k_col: 4.0              # 起点软化, 由anneal恢复至20
+  collision_terminates: false   # 训练期不终止(评估期终止, 见eval_env)
+  capture_radius: 5.0     # 判据=设计终值, BC数据即在最终判据下示教
+  max_gap: 3.14159265
+  gamma_pbrs: 1.0         # 偏差记录见EXPERIMENT_LOG"与开题偏差"
+
+# --- PPO微调超参 ---
+train:
+  n_env: 8
+  rollout: 256
+  hidden: 128
+  lr: 3.0e-4
+  actor_lr: 5.0e-5
+  critic_lr: 1.0e-3
+  clip: 0.2
+  epochs: 4
+  minibatch: 4
+  ent_coef: 0.0005
+  gamma: 0.99
+  lam: 0.95
+  log_every: 5
+  eval_every: 50
+  eval_episodes: 20
+  anneal:
+    start: 100
+    end: 500
+    fields:
+      k_col: [4.0, 20.0]
+
+# --- 评估env覆盖(叠加在"env终值+anneal终点"之上): 永远最终判据+设计惩罚 ---
+eval_env:
+  k_col: 20.0
+  collision_terminates: true

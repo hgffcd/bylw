@@ -1,0 +1,37 @@
+# 论文A E1 主表配置：APF 逃逸者 + 离线独立轨迹调参后的经典筛选器。
+# 调参区间 episodes [560,580)，复核区间 [600,640)；[640,800) 保留为最终 E5 报告集。
+# GRU 运行会忽略 filter_params，故本配置仍可由 --belief-source gru 复用。
+tag: c1_belief_tuned
+recipe: recipe_v4
+env:
+  n_pursuers: 3
+  speed_ratio: 0.6
+  n_static_obs: 8
+  n_dynamic_obs: 0
+  obs_mode: belief
+  sense_range: 200.0
+  fov_half: 3.14159
+  max_steps: 500
+train:
+  seed: 1
+  iters: 1200
+  anneal:
+    start: 50
+    end: 800
+    fields:
+      sense_range: [200.0, 25.0]
+      fov_half: [3.14159, 1.0472]
+  predictor_ckpt: runs/predictor_r2.pt
+  predictor_seq_len: 20
+  belief_variant: belief
+  filter_params:
+    cv:
+      q_growth: 16.0
+      alpha: 0.8
+    kf:
+      q: 8.0
+      r: 0.01
+    imm:
+      q: 8.0
+      r: 0.01
+      p_stay: 0.95

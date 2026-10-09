@@ -1,0 +1,7 @@
+numpy>=1.24
+torch>=2.0
+pyyaml
+matplotlib
+pytest
+scipy>=1.15
+osqp>=1.0,<2

@@ -1,0 +1,15 @@
+# C0档 recipe_v3 续训: --resume runs/c0_r2_s<s>_*/final.pt --seed <s>
+tag: c0_r3
+recipe: recipe_v3
+env:
+  n_pursuers: 3
+  speed_ratio: 0.8
+  n_static_obs: 5
+  n_dynamic_obs: 0
+  obs_mode: oracle
+  sense_range: 200.0
+  fov_half: 3.14159
+  max_steps: 500
+train:
+  seed: 1
+  iters: 1600

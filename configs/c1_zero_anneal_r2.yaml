@@ -1,0 +1,26 @@
+# C1档(失观清零基线) recipe_v2 训练: 感知受限退火引入
+# 两种用法(同配置, 不同--resume):
+#   接力: --resume runs/c0e_r2_s<s>_*/final.pt --seed <s>   (自C0(sr0.6)收敛策略)
+#   冷启动: 先 bc_warmstart --config 本文件 --seed <s> --out runs/bc_v6_c1_s<s>.pt 再 --resume 之
+# 退火: it50-800 sense 200->25, fov pi->60度半角; 速度比恒0.6(选项A, 隔离失观变量)
+tag: c1_zero
+recipe: recipe_v4
+env:
+  n_pursuers: 3
+  speed_ratio: 0.6
+  n_static_obs: 8
+  n_dynamic_obs: 0
+  obs_mode: zero
+  sense_range: 200.0
+  fov_half: 3.14159
+  max_steps: 500
+
+train:
+  seed: 1
+  iters: 1200
+  anneal:
+    start: 50
+    end: 800
+    fields:
+      sense_range: [200.0, 25.0]
+      fov_half: [3.14159, 1.0472]

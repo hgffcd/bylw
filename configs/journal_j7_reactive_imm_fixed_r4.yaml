@@ -1,0 +1,34 @@
+# J7 reactive-ModeSwitch adaptation: retained IMM fixed-confidence variant.
+tag: journal_j7_reactive_imm_fixed
+recipe: recipe_v4
+env:
+  n_pursuers: 3
+  speed_ratio: 0.6
+  n_static_obs: 8
+  n_dynamic_obs: 2
+  dyn_obs_speed: 2.0
+  evader_type: reactive_mode_switch
+  evader_mode_dwell: [2.0, 4.0]
+  evader_turn_rate: 0.3
+  evader_pursuer_repulsion_gain: 1.0
+  evader_pursuer_reaction_range: 30.0
+  obs_mode: belief
+  sense_range: 200.0
+  fov_half: 3.14159
+  max_steps: 500
+train:
+  seed: 1
+  iters: 1200
+  anneal:
+    start: 50
+    end: 800
+    fields:
+      sense_range: [200.0, 25.0]
+      fov_half: [3.14159, 1.0472]
+  belief_source: imm
+  belief_variant: fixed_confidence
+  filter_params:
+    imm:
+      q: 8.0
+      r: 0.01
+      p_stay: 0.95

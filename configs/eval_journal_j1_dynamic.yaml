@@ -1,0 +1,21 @@
+# 期刊论文A补实验 J1：冻结C1策略的零样本动态障碍泛化。
+# 相对 eval_final_c1.yaml 只增加2个动态圆形障碍；不重训、不改E1–E5。
+tag: eval_journal_j1_dynamic
+env:
+  n_pursuers: 3
+  speed_ratio: 0.6
+  n_static_obs: 8
+  n_dynamic_obs: 2
+  dyn_obs_speed: 2.0
+  obs_mode: zero
+  sense_range: 25.0
+  fov_half: 1.0472
+  max_steps: 500
+  k_dist: 2.0
+  k_col: 20.0
+  collision_terminates: true
+  capture_radius: 5.0
+  max_gap: 3.14159265
+  gamma_pbrs: 1.0
+train:
+  hidden: 128

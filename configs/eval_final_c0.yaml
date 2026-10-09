@@ -1,0 +1,21 @@
+# C0档最终验收评估配置 v2 (2026-07-27 选项A再基线化: speed_ratio 0.8->0.6, 依据见
+# EXPERIMENT_LOG 可行性天花板扫描与选项A决策行; 其余判据不变, 此后勿改)
+# M1判据 success>=0.8 的唯一口径; 确定性策略; >=100回合 x >=3评估种子(scripts/eval_policy.py)
+tag: eval_final_c0
+env:
+  n_pursuers: 3
+  speed_ratio: 0.6
+  n_static_obs: 5
+  n_dynamic_obs: 0
+  obs_mode: oracle
+  sense_range: 200.0
+  fov_half: 3.14159
+  max_steps: 500
+  k_dist: 2.0
+  k_col: 20.0
+  collision_terminates: true
+  capture_radius: 5.0
+  max_gap: 3.14159265
+  gamma_pbrs: 1.0
+train:
+  hidden: 128

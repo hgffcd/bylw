@@ -1,0 +1,71 @@
+# T2 phase-2 single reward-repair candidate (2026-08-17).
+#
+# Pre-registered changes relative to thesis_t2_c1_mlp.yaml:
+# 1. use simulator truth only for the centralized training reward potential,
+#    while actor observations remain the same partial-observation IMM belief;
+# 2. make repeated reacquisition too small to farm;
+# 3. add gradual lost-time cost and explicit long-loss/timeout terminal costs;
+# 4. adopt the 6 m engineering encirclement endpoint while retaining the
+#    5 m strict endpoint for independent reporting;
+# 5. reach the held-out sensing/FOV condition by the end of the 150-iteration
+#    diagnostic instead of leaving the entire short gate in the easy regime.
+tag: thesis_t2_c1_mlp_reward_repair
+recipe: recipe_v4
+env:
+  n_pursuers: 3
+  speed_ratio: 0.6
+  n_static_obs: 8
+  n_dynamic_obs: 2
+  dyn_obs_speed: 2.0
+  obs_mode: belief
+  sense_range: 200.0
+  fov_half: 3.14159265
+  lost_cap_steps: 50
+  max_steps: 500
+  visual_occlusion: true
+  visibility_diagnostics: true
+  require_initial_visibility: true
+  capture_radius: 6.0
+  min_capture_agents: 3
+  max_gap: 3.14159265
+  reward_target_reference: truth
+  k_rec: 0.5
+  k_lost: 0.1
+  r_long_lost: -100.0
+  r_timeout: -50.0
+train:
+  seed: 101
+  iters: 1200
+  anneal:
+    start: 20
+    end: 150
+    fields:
+      sense_range: [200.0, 25.0]
+      fov_half: [3.14159265, 1.04719755]
+  belief_source: imm
+  belief_variant: belief
+  filter_params:
+    imm: {q: 8.0, r: 0.01, p_stay: 0.95}
+  actor_encoder: mlp
+  use_cbf: true
+  safety_version: dynamic_v2
+  safety_params:
+    horizon_s: 1.5
+    safety_buffer: 0.5
+    emergency_ranking: horizon
+eval_env:
+  sense_range: 25.0
+  fov_half: 1.04719755
+  lost_cap_steps: 50
+  max_steps: 500
+  visibility_diagnostics: true
+  k_col: 20.0
+  collision_terminates: true
+  capture_radius: 6.0
+  min_capture_agents: 3
+  max_gap: 3.14159265
+  reward_target_reference: truth
+  k_rec: 0.5
+  k_lost: 0.1
+  r_long_lost: -100.0
+  r_timeout: -50.0

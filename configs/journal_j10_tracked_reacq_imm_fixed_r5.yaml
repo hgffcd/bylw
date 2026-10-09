@@ -1,0 +1,58 @@
+# J10: IMM-fixed-confidence + J9 controller in a genuine tracked-start task.
+tag: journal_j10_tracked_reacq_imm_fixed
+recipe: recipe_v4
+env:
+  n_pursuers: 3
+  speed_ratio: 0.6
+  n_static_obs: 8
+  n_dynamic_obs: 2
+  dyn_obs_speed: 2.0
+  evader_type: reactive_mode_switch
+  evader_mode_dwell: [2.0, 4.0]
+  evader_turn_rate: 0.3
+  evader_pursuer_repulsion_gain: 1.0
+  evader_pursuer_reaction_range: 30.0
+  obs_mode: belief
+  sense_range: 25.0
+  fov_half: 1.0472
+  max_steps: 500
+  k_rec: 10.0
+  require_initial_visibility: true
+train:
+  seed: 1
+  iters: 1200
+  belief_source: imm
+  belief_variant: fixed_confidence
+  filter_params:
+    imm:
+      q: 8.0
+      r: 0.01
+      p_stay: 0.95
+  safety_version: dynamic_v2
+  safety_params:
+    horizon_s: 1.5
+    safety_buffer: 0.5
+    emergency_ranking: horizon
+  cbf_correction_penalty: 0.05
+  reacquisition_controller:
+    enabled: true
+    start_lost_steps: 1
+    slot_radius_m: 8.0
+    scout_blend: 0.85
+    tracker_blend: 0.55
+    blend_growth: 0.10
+    scout_speed_ratio: 1.0
+    tracker_speed_ratio: 0.65
+    heading_tau_s: 0.55
+    speed_tau_s: 1.0
+    slot_arrival_m: 1.5
+  episode_mix:
+    easy_probability: 0.25
+    easy_fields:
+      sense_range: 200.0
+      fov_half: 3.14159
+eval_env:
+  k_rec: 5.0
+  k_col: 20.0
+  collision_terminates: true
+  require_initial_visibility: true

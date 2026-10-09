@@ -1,0 +1,32 @@
+# 论文A E2: ModeSwitch逃逸者下的信念来源交叉实验。
+# 与 c1_belief_r4.yaml 仅逃逸者类型/tag不同；训练配方、感知退火、速度比、
+# 评估判据和信念注入变体保持一致。用 --belief-source {kf,imm,gru} 切换方法侧变量。
+# 接力用法:
+#   python train_belief.py --config 本文件 --belief-source <src> \
+#     --resume <对应种子的C0 best_eval.pt> --seed <s>
+tag: c1_modeswitch_belief
+recipe: recipe_v4
+env:
+  n_pursuers: 3
+  speed_ratio: 0.6
+  n_static_obs: 8
+  n_dynamic_obs: 0
+  obs_mode: belief
+  evader_type: mode_switch
+  evader_mode_dwell: [2.0, 4.0]
+  evader_turn_rate: 0.3
+  sense_range: 200.0
+  fov_half: 3.14159
+  max_steps: 500
+train:
+  seed: 1
+  iters: 1200
+  anneal:
+    start: 50
+    end: 800
+    fields:
+      sense_range: [200.0, 25.0]
+      fov_half: [3.14159, 1.0472]
+  predictor_ckpt: runs/predictor_r2.pt
+  predictor_seq_len: 20
+  belief_variant: belief

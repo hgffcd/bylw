@@ -1,0 +1,37 @@
+# C0档课程v2 阶段1微调档v2: 在s1ft基础上软化碰撞罚金 k_col 20->4
+# 理由: -20/步的碰撞罚金在梯度上压过+100捕获, 把BC策略侵蚀回"避而不围";
+# 安全由M5的CBF层负责, 课程早期不应让安全罚金压死任务学习; 后期档位恢复k_col
+tag: c0_currv2_s1ft2
+env:
+  n_pursuers: 3
+  speed_ratio: 0.8
+  n_static_obs: 5
+  n_dynamic_obs: 0
+  obs_mode: oracle
+  sense_range: 200.0
+  fov_half: 3.14159
+  max_steps: 500
+  k_dist: 2.0
+  k_col: 4.0
+  collision_terminates: false
+  capture_radius: 12.0
+  max_gap: 6.29
+  gamma_pbrs: 1.0
+train:
+  seed: 1
+  n_env: 8
+  rollout: 256
+  iters: 300
+  hidden: 128
+  lr: 3.0e-4
+  actor_lr: 5.0e-5
+  critic_lr: 1.0e-3
+  clip: 0.2
+  epochs: 4
+  minibatch: 4
+  ent_coef: 0.0005
+  gamma: 0.99
+  lam: 0.95
+  log_every: 5
+  eval_every: 50
+  eval_episodes: 20
