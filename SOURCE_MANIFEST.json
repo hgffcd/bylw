@@ -2,7 +2,6 @@
   "description": "Portable source-only export hashes, excluding this manifest itself.",
   "files": {
     ".gitignore": "9ffba655270404b42eab8caaf625754343d9ddd2c359080e53c25f20099f0e3c",
-    "README.md": "96bfda533ccdd93f0a0a2cdfb747c4c8dccb8e29f75e281895afec951a31b793",
     "SOURCE_ORIGINS.json": "6e247400a8e05b231546f5ff9021c5cb2cddba036525de2e0b5d12c6e12ed254",
     "algos/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "algos/mappo.py": "c994db3464a687434c289586a6d25b0771e3fcbcc95617d127236558a1008d1a",
