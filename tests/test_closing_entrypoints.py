@@ -21,6 +21,17 @@ def test_withdrawal_reference_and_strategy():
         assert cmd[cmd.index('--reconfig')+1]=={'active':'active_polar','retained':'retained_slots'}[arm]
         assert g['agents']==5
 
+def test_physical_gpu_and_offline_runtime_preserve_experiment_parameters():
+    a=args('4','ch4_final3_g0','ordinary_all')
+    baseline,g=build(a)
+    a.physical_device=True
+    a.kit_args='--portable-root /some/runtime --/persistent/isaac/asset_root/cloud=/some/assets'
+    command,actual=build(a)
+    expected=list(baseline)
+    expected[expected.index('--device')+1]='cuda:2'
+    assert command==expected+['--kit_args',a.kit_args]
+    assert actual==g
+
 def test_invalid_contracts_fail_before_launch():
     with pytest.raises(ValueError):build(args('4','ch5_5to3_g0','ordinary_all'))
     with pytest.raises(ValueError):build(args('5','ch5_5to3_g0','active',duration=5))

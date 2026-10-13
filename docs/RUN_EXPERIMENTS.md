@@ -34,4 +34,6 @@ python -m reproduce.closing_score --case ch5_5to3_g0 --run active=runs/ch5_5to3_
 
 第四章相应使用ch4_final3_g0以及ordinary_all等ARM名称；评分入口记录实际n/seed/duration，默认按30/45/60秒。第五章从最后退出计时，第四章从任务开始计时，分母不能混合。第五章保留原几何保持主指标并额外报告连续可见的严格指标；第四章主判据已要求连续可见。
 
+多GPU Isaac工作站可加`--physical-device`，让`--gpu 2`直接使用`cuda:2`，并清除子进程的CUDA_VISIBLE_DEVICES重映射。默认仍采用仅暴露所选GPU的模式。需要本地资产或独立Kit缓存时，使用`--kit-args="--portable-root /path/to/runtime --/renderer/multiGpu/enabled=false --/persistent/isaac/asset_root/cloud=/path/to/installed/assets"`。资产须为已安装的Isaac资产；仓库不包含第三方二进制资产。这两个选项仅配置运行环境，不修改场景或控制参数。
+
 matched_all和smooth_all仅为第四章开发候选，入口保留以便复查，不是最终方法或已证明有效的改进。旧固定布局、垂向自由度和安全层实验继续使用reproduce/native.py。退出机是保持悬停的任务退出，不是电机失效坠落；地图限六混合障碍的通行约束分布。
