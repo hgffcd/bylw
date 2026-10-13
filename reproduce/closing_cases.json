@@ -1,0 +1,465 @@
+{
+  "scope": "Scenario configurations only; no observations, trajectories, evaluation results, or pretrained weights.",
+  "cases": {
+    "ch4_final3_g0": {
+      "label": "final3_g0",
+      "seed": 23340000,
+      "n": 4,
+      "gpu": 2,
+      "agents": 3,
+      "duration": 60.0,
+      "windows": [
+        30,
+        45,
+        60
+      ],
+      "arm_order": [
+        "ordinary_predict",
+        "ordinary_single",
+        "ordinary_all",
+        "budget_all"
+      ],
+      "chapter": "4",
+      "times": [],
+      "indices": []
+    },
+    "ch4_final3_g1": {
+      "label": "final3_g1",
+      "seed": 23340016,
+      "n": 4,
+      "gpu": 3,
+      "agents": 3,
+      "duration": 60.0,
+      "windows": [
+        30,
+        45,
+        60
+      ],
+      "arm_order": [
+        "ordinary_single",
+        "ordinary_all",
+        "budget_all",
+        "ordinary_predict"
+      ],
+      "chapter": "4",
+      "times": [],
+      "indices": []
+    },
+    "ch4_final3_g2": {
+      "label": "final3_g2",
+      "seed": 23340032,
+      "n": 4,
+      "gpu": 2,
+      "agents": 3,
+      "duration": 60.0,
+      "windows": [
+        30,
+        45,
+        60
+      ],
+      "arm_order": [
+        "ordinary_all",
+        "budget_all",
+        "ordinary_predict",
+        "ordinary_single"
+      ],
+      "chapter": "4",
+      "times": [],
+      "indices": []
+    },
+    "ch4_final3_g3": {
+      "label": "final3_g3",
+      "seed": 23340048,
+      "n": 4,
+      "gpu": 3,
+      "agents": 3,
+      "duration": 60.0,
+      "windows": [
+        30,
+        45,
+        60
+      ],
+      "arm_order": [
+        "budget_all",
+        "ordinary_predict",
+        "ordinary_single",
+        "ordinary_all"
+      ],
+      "chapter": "4",
+      "times": [],
+      "indices": []
+    },
+    "ch4_final3_g4": {
+      "label": "final3_g4",
+      "seed": 23340064,
+      "n": 4,
+      "gpu": 2,
+      "agents": 3,
+      "duration": 60.0,
+      "windows": [
+        30,
+        45,
+        60
+      ],
+      "arm_order": [
+        "ordinary_predict",
+        "ordinary_single",
+        "ordinary_all",
+        "budget_all"
+      ],
+      "chapter": "4",
+      "times": [],
+      "indices": []
+    },
+    "ch4_final3_g5": {
+      "label": "final3_g5",
+      "seed": 23340080,
+      "n": 4,
+      "gpu": 3,
+      "agents": 3,
+      "duration": 60.0,
+      "windows": [
+        30,
+        45,
+        60
+      ],
+      "arm_order": [
+        "ordinary_single",
+        "ordinary_all",
+        "budget_all",
+        "ordinary_predict"
+      ],
+      "chapter": "4",
+      "times": [],
+      "indices": []
+    },
+    "ch4_final3_g6": {
+      "label": "final3_g6",
+      "seed": 23340096,
+      "n": 4,
+      "gpu": 2,
+      "agents": 3,
+      "duration": 60.0,
+      "windows": [
+        30,
+        45,
+        60
+      ],
+      "arm_order": [
+        "ordinary_all",
+        "budget_all",
+        "ordinary_predict",
+        "ordinary_single"
+      ],
+      "chapter": "4",
+      "times": [],
+      "indices": []
+    },
+    "ch4_final3_g7": {
+      "label": "final3_g7",
+      "seed": 23340112,
+      "n": 4,
+      "gpu": 3,
+      "agents": 3,
+      "duration": 60.0,
+      "windows": [
+        30,
+        45,
+        60
+      ],
+      "arm_order": [
+        "budget_all",
+        "ordinary_predict",
+        "ordinary_single",
+        "ordinary_all"
+      ],
+      "chapter": "4",
+      "times": [],
+      "indices": []
+    },
+    "ch5_4to3_g0": {
+      "label": "4to3_g0",
+      "stratum": "4to3",
+      "agents": 4,
+      "n": 4,
+      "seed": 22250000,
+      "indices": [
+        2
+      ],
+      "times": [
+        2.5
+      ],
+      "duration": 62.5,
+      "windows": [
+        30,
+        45,
+        60
+      ],
+      "gpu": 2,
+      "cohort": "c222_prospective",
+      "fault_pattern": "4to3_p0",
+      "chapter": "5"
+    },
+    "ch5_4to3_g1": {
+      "label": "4to3_g1",
+      "stratum": "4to3",
+      "agents": 4,
+      "n": 4,
+      "seed": 22250016,
+      "indices": [
+        0
+      ],
+      "times": [
+        2.5
+      ],
+      "duration": 62.5,
+      "windows": [
+        30,
+        45,
+        60
+      ],
+      "gpu": 3,
+      "cohort": "c222_prospective",
+      "fault_pattern": "4to3_p1",
+      "chapter": "5"
+    },
+    "ch5_4to3_g2": {
+      "label": "4to3_g2",
+      "stratum": "4to3",
+      "agents": 4,
+      "n": 4,
+      "seed": 22250032,
+      "indices": [
+        2
+      ],
+      "times": [
+        2.5
+      ],
+      "duration": 62.5,
+      "windows": [
+        30,
+        45,
+        60
+      ],
+      "gpu": 2,
+      "cohort": "c222_prospective",
+      "fault_pattern": "4to3_p0",
+      "chapter": "5"
+    },
+    "ch5_4to3_g3": {
+      "label": "4to3_g3",
+      "stratum": "4to3",
+      "agents": 4,
+      "n": 4,
+      "seed": 22250048,
+      "indices": [
+        0
+      ],
+      "times": [
+        2.5
+      ],
+      "duration": 62.5,
+      "windows": [
+        30,
+        45,
+        60
+      ],
+      "gpu": 3,
+      "cohort": "c222_prospective",
+      "fault_pattern": "4to3_p1",
+      "chapter": "5"
+    },
+    "ch5_5to4_g0": {
+      "label": "5to4_g0",
+      "stratum": "5to4",
+      "agents": 5,
+      "n": 4,
+      "seed": 22251000,
+      "indices": [
+        3
+      ],
+      "times": [
+        2.5
+      ],
+      "duration": 62.5,
+      "windows": [
+        30,
+        45,
+        60
+      ],
+      "gpu": 2,
+      "cohort": "c222_prospective",
+      "fault_pattern": "5to4_p0",
+      "chapter": "5"
+    },
+    "ch5_5to4_g1": {
+      "label": "5to4_g1",
+      "stratum": "5to4",
+      "agents": 5,
+      "n": 4,
+      "seed": 22251016,
+      "indices": [
+        1
+      ],
+      "times": [
+        2.5
+      ],
+      "duration": 62.5,
+      "windows": [
+        30,
+        45,
+        60
+      ],
+      "gpu": 3,
+      "cohort": "c222_prospective",
+      "fault_pattern": "5to4_p1",
+      "chapter": "5"
+    },
+    "ch5_5to4_g2": {
+      "label": "5to4_g2",
+      "stratum": "5to4",
+      "agents": 5,
+      "n": 4,
+      "seed": 22251032,
+      "indices": [
+        3
+      ],
+      "times": [
+        2.5
+      ],
+      "duration": 62.5,
+      "windows": [
+        30,
+        45,
+        60
+      ],
+      "gpu": 2,
+      "cohort": "c222_prospective",
+      "fault_pattern": "5to4_p0",
+      "chapter": "5"
+    },
+    "ch5_5to4_g3": {
+      "label": "5to4_g3",
+      "stratum": "5to4",
+      "agents": 5,
+      "n": 4,
+      "seed": 22251048,
+      "indices": [
+        1
+      ],
+      "times": [
+        2.5
+      ],
+      "duration": 62.5,
+      "windows": [
+        30,
+        45,
+        60
+      ],
+      "gpu": 3,
+      "cohort": "c222_prospective",
+      "fault_pattern": "5to4_p1",
+      "chapter": "5"
+    },
+    "ch5_5to3_g0": {
+      "label": "5to3_g0",
+      "stratum": "5to3",
+      "agents": 5,
+      "n": 4,
+      "seed": 22252000,
+      "indices": [
+        0,
+        4
+      ],
+      "times": [
+        2.5,
+        3.0
+      ],
+      "duration": 63.0,
+      "windows": [
+        30,
+        45,
+        60
+      ],
+      "gpu": 2,
+      "cohort": "c222_prospective",
+      "fault_pattern": "5to3_p0",
+      "chapter": "5"
+    },
+    "ch5_5to3_g1": {
+      "label": "5to3_g1",
+      "stratum": "5to3",
+      "agents": 5,
+      "n": 4,
+      "seed": 22252016,
+      "indices": [
+        1,
+        3
+      ],
+      "times": [
+        2.5,
+        3.0
+      ],
+      "duration": 63.0,
+      "windows": [
+        30,
+        45,
+        60
+      ],
+      "gpu": 3,
+      "cohort": "c222_prospective",
+      "fault_pattern": "5to3_p1",
+      "chapter": "5"
+    },
+    "ch5_5to3_g2": {
+      "label": "5to3_g2",
+      "stratum": "5to3",
+      "agents": 5,
+      "n": 4,
+      "seed": 22252032,
+      "indices": [
+        0,
+        4
+      ],
+      "times": [
+        2.5,
+        3.0
+      ],
+      "duration": 63.0,
+      "windows": [
+        30,
+        45,
+        60
+      ],
+      "gpu": 2,
+      "cohort": "c222_prospective",
+      "fault_pattern": "5to3_p0",
+      "chapter": "5"
+    },
+    "ch5_5to3_g3": {
+      "label": "5to3_g3",
+      "stratum": "5to3",
+      "agents": 5,
+      "n": 4,
+      "seed": 22252048,
+      "indices": [
+        1,
+        3
+      ],
+      "times": [
+        2.5,
+        3.0
+      ],
+      "duration": 63.0,
+      "windows": [
+        30,
+        45,
+        60
+      ],
+      "gpu": 3,
+      "cohort": "c222_prospective",
+      "fault_pattern": "5to3_p1",
+      "chapter": "5"
+    }
+  }
+}
